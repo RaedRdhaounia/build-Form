@@ -1,6 +1,13 @@
 # build-Form
 Form Builder App is a dynamic form builder built with React, Typescript, and Tailwind CSS. This application allows users to create custom forms and validate form submissions.
 
+# Dependiencies
+- nextjs: for framework building app; we use nextjs, why ? as a modern solid and performent front-end framework this is our framework used for.
+
+-redux : [global state managment] ; for managment of data we used redux-toolkit as a strong data managment, and while nextjs don't conserve store at navigation wde add redux-persist to conserve data when getting navigation between interfaces.
+
+
+
 # Folder-Structure
 
 Build-Form/
@@ -56,12 +63,24 @@ Build-Form/
 │&&&│&&&&&& ├── types.ts  
 │&&&│&&&&&& └── index.ts  
 │&&&├── pages  
+│&&&│&&&├── test-redux  
+│&&&│&&&│&&& └── index.tsx  
 │&&&│&&&├── api  
 │&&&│&&&├── _app.tsx  
 │&&&│&&&├── _document.tsx  
 │&&&│&&&└── index.tsx  
 │&&&├── store  
 │&&&│&&&├── reducers  
+│&&&│&&&|&&& ├── blockReducer.ts  
+│&&&│&&&|&&& ├── CheckBoxReducer.ts  
+│&&&│&&&|&&& ├── fieldReducer.ts  
+│&&&│&&&|&&& ├── formReducer.ts  
+│&&&│&&&|&&& ├── inputFiledReducer.ts  
+│&&&│&&&|&&& ├── radioBottonReducer.ts  
+│&&&│&&&|&&& ├── selectInputReducer.ts  
+│&&&│&&&|&&& └── index.ts  
+│&&&│&&&├── rootReducer.ts  
+│&&&│&&&└── store.ts  
 │&&&└── Styles  
 │&&&&&& ├── global.css  
 │&&&&&& └── Home.modules.css  
