@@ -4,9 +4,9 @@ Form Builder App is a dynamic form builder built with React, Typescript, and Tai
 # Dependiencies
 - nextjs: for framework building app; we use nextjs, why ? as a modern solid and performent front-end framework this is our framework used for.
 
--redux : [global state managment] ; for managment of data we used redux-toolkit as a strong data managment, and while nextjs don't conserve store at navigation wde add redux-persist to conserve data when getting navigation between interfaces.
+-redux : [global-statement-dataflow-management] ; for managment of data we used redux-toolkit as a strong data managment, and while nextjs don't conserve store at navigation wde add redux-persist to conserve data when getting navigation between interfaces.
 
-
+-tailwinduiCSS : [Framework-CSS] ; for the component styles we used tailwindui as a new strong CSS library for faster and quick styles copmponents creation. simply used and more efficated.
 
 # Folder-Structure
 
@@ -83,6 +83,8 @@ Build-Form/
 │&&&│&&&└── store.ts  
 │&&&└── Styles  
 │&&&&&& ├── global.css  
-│&&&&&& └── Home.modules.css  
+│&&&&&& └── Home.modules.css
+├── tailwind.config.js  
+├── postcss.config.ts
 └── tsconfig.json  
   

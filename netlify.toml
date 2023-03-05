@@ -1,0 +1,3 @@
+[build]
+  command = "echo 'Building the project...' && yarn install && yarn build && echo 'Project built successfully!'"
+

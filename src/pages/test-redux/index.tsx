@@ -1,20 +1,30 @@
 import { addBlock } from "@/store/reducers/formReducer ";
-import { persistor } from "@/store/store ";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 
 export default function Index(){
   const dispatch = useDispatch()
+  const router = useRouter()
   const form = useSelector((state: RootState) => state.form);
   function handleBlock(){
     dispatch(addBlock("contacts"))
   }
   function handleReset(){
-    persistor.purge()
+    alert('store reset')
+    router.push('/')
   }
   return (
     <>
-      <button onClick={handleReset} > reset store </button>
+    <p className="">
+
+    </p>
+    <button
+      className="bg-green-500 hover:bg-green-600"
+      onClick={handleReset}
+    >
+      Click me
+    </button>
       <h1>Form Name: <p>  {form.formName} </p></h1>
       <h1>Form Id:   <p> {form.formId}    </p></h1>
       <>
