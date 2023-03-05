@@ -60,6 +60,8 @@ Build-Form/
 │&&&│&&&├── _app.tsx  
 │&&&│&&&├── _document.tsx  
 │&&&│&&&└── index.tsx  
+│&&&├── store  
+│&&&│&&&├── reducers  
 │&&&└── Styles  
 │&&&&&& ├── global.css  
 │&&&&&& └── Home.modules.css  
