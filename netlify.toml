@@ -1,3 +1,5 @@
 [build]
-  command = "yarn && yarn build"
-  publish = "out"
+  command = "npm run build"
+  environment = { NODE_ENV = "production" }
+  # Use --legacy-peer-deps flag for npm install
+  install-flags = "--force"
