@@ -1,38 +1,24 @@
+import { BoxReducer, FormReducer } from '@/constants/types/interfaces ';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface FormState {
-  formId: string;
-  formName: string;
-  blockOrder: string[];
-}
-const initForm = {  formId: "",
-formName: "",
-blockOrder: []
-}
-const initialState: FormState = initForm;
+const initialState: FormReducer = { formName: "Form Name", blocks: [] };
 
 const formSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    setFormId(state, action: PayloadAction<string>) {
-      state.formId = action.payload;
-    },
     setFormName(state, action: PayloadAction<string>) {
       state.formName = action.payload;
     },
     addBlock(state, action: PayloadAction<string>) {
-      state.blockOrder.push(action.payload);
+      state.blocks.push(action.payload)
     },
     removeBlock(state, action: PayloadAction<string>) {
-      const index = state.blockOrder.indexOf(action.payload);
-      if (index !== -1) {
-        state.blockOrder.splice(index, 1);
-      }
+      state.blocks.filter(block => block !== action.payload)
     },
   },
 });
 
-export const { setFormId, setFormName, addBlock, removeBlock } = formSlice.actions;
+export const { setFormName, addBlock, removeBlock } = formSlice.actions;
 
 export default formSlice.reducer;

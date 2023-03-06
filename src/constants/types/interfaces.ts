@@ -2,9 +2,22 @@
 / / ---- store interfaces
 */
 
-import { type } from "os";
-
 // ----- form state interface
+export interface FormReducer {
+  formName: string,
+  blocks : string[]
+}
+
+export interface BoxReducer {
+  label: string,
+  description: string,
+  id: string,
+  fields: Filed[]
+}
+export interface Filed {
+  type: FieldType,
+  id: string
+}
 export interface FormState {
   formId  : string;
   blocks  : Block[];

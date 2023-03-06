@@ -1,30 +1,46 @@
-import { BlockState, FieldType } from '@/types/interfaces';
+import { BoxReducer, Filed } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: BlockState[] = [];
+const initialState: BoxReducer[] = [];
 
 const blockSlice = createSlice({
   name: 'block',
   initialState,
   reducers: {
-    addBlock(state, action: PayloadAction<BlockState>) {
+    addBlock(state, action: PayloadAction<BoxReducer>) {
       state.push(action.payload);
     },
-    removeBlock(state, action: PayloadAction<number>) {
-      state.splice(action.payload, 1)
+    removeBlock(state, action: PayloadAction<string>) {
+      state.filter(block => block.id !== action.payload)
     },
-    updateBlock(state, action: PayloadAction<{ index: number, description:string, name: string }>) {
-      state[action.payload.index] = {... state[action.payload.index], description: action.payload.description, name: action.payload.name }
+    updateBlock(state, action: PayloadAction<{ id: string, description:string, label: string }>) {
+      const {description, id, label} = action.payload
+      state.forEach(block =>{
+        if(block.id === id) {
+          if (description) {
+            block.description = description;
+          }
+          if (label) {
+            block.label = label
+          }
+        }
+      })
     },
-    removeBlockFiled(state, action: PayloadAction<{ index: number, fieldId: number}>) {
-      state[action.payload.index].fields.splice(action.payload.fieldId, 1)
+    removeBlockFiled(state, action: PayloadAction<{ id: string, fieldId: string}>) {
+      const {fieldId, id} = action.payload
+      state.forEach((block) => {
+        block.fields.filter(field => {
+          field.id !== fieldId
+        })
+      }
+      )
     },
-    addBlockFiled(state, action: PayloadAction<{ index: number, field: {type: FieldType,  id: string}}>) {
+    addBlockFiled(state, action: PayloadAction<{ index: number, field: Filed}>) {
       state[action.payload.index].fields.push(action.payload.field)
     },
   },
 });
 
-export const { addBlock, removeBlock, updateBlock } = blockSlice.actions;
+export const { addBlock, addBlockFiled, removeBlock, removeBlockFiled, updateBlock } = blockSlice.actions;
 
 export default blockSlice.reducer;
