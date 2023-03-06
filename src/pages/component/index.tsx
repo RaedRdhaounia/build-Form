@@ -9,7 +9,7 @@ export default function index() {
       <div className="text-center m-16">
       {FormInfo.formName}
       </div>
-      {FormInfo.blocks.map((block, index) => {
+      {FormInfo.blocks && FormInfo.blocks.map((block, index) => {
         return ( <Block {...block} key={index} />)
       })}
       <Save/>

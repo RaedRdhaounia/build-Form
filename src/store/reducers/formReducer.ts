@@ -10,11 +10,11 @@ const formSlice = createSlice({
     setFormName(state, action: PayloadAction<string>) {
       state.formName = action.payload;
     },
-    addBlock(state, action: PayloadAction<BoxReducer>) {
+    addBlock(state, action: PayloadAction<string>) {
       state.blocks.push(action.payload)
     },
-    removeBlock(state, action: PayloadAction<number>) {
-      state.blocks.splice(action.payload, 1)
+    removeBlock(state, action: PayloadAction<string>) {
+      state.blocks.filter(block => block !== action.payload)
     },
   },
 });
