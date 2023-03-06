@@ -1,4 +1,4 @@
-import { RadioButtonState } from '@/constants/interfaces ';
+import { RadioButtonState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: RadioButtonState = {

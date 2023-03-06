@@ -1,4 +1,4 @@
-import { configureStore, createAsyncThunk } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';

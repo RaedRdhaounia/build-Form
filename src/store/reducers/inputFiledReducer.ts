@@ -1,4 +1,4 @@
-import { InputFieldState } from '@/constants/interfaces ';
+import { InputFieldState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: InputFieldState = {
