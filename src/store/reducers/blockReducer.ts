@@ -1,4 +1,4 @@
-import { BlockState } from '@/types/interfaces';
+import { BlockState, FieldType } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: BlockState[] = [];
@@ -10,19 +10,21 @@ const blockSlice = createSlice({
     addBlock(state, action: PayloadAction<BlockState>) {
       state.push(action.payload);
     },
-    removeBlock(state, action: PayloadAction<string>) {
-      return state.filter((block) => block.id !== action.payload);
+    removeBlock(state, action: PayloadAction<number>) {
+      state.splice(action.payload, 1)
     },
-    updateBlockName(state, action: PayloadAction<{ id: string; name: string }>) {
-      const { id, name } = action.payload;
-      const blockToUpdate = state.find((block) => block.id === id);
-      if (blockToUpdate) {
-        blockToUpdate.name = name;
-      }
+    updateBlock(state, action: PayloadAction<{ index: number, description:string, name: string }>) {
+      state[action.payload.index] = {... state[action.payload.index], description: action.payload.description, name: action.payload.name }
+    },
+    removeBlockFiled(state, action: PayloadAction<{ index: number, fieldId: number}>) {
+      state[action.payload.index].fields.splice(action.payload.fieldId, 1)
+    },
+    addBlockFiled(state, action: PayloadAction<{ index: number, field: {type: FieldType,  id: string}}>) {
+      state[action.payload.index].fields.push(action.payload.field)
     },
   },
 });
 
-export const { addBlock, removeBlock, updateBlockName } = blockSlice.actions;
+export const { addBlock, removeBlock, updateBlock } = blockSlice.actions;
 
 export default blockSlice.reducer;

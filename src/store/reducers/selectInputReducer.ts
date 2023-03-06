@@ -1,49 +1,27 @@
 import { SelectInputState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: SelectInputState = {
-  id: '',
-  name: '',
-  options: [],
-  styles: {},
-  value: '',
-};
+const initialState: SelectInputState[] = []
 
 const selectInputSlice = createSlice({
   name: 'selectInput',
   initialState,
   reducers: {
-    setSelectInput: (state, action: PayloadAction<SelectInputState>) => {
-      return action.payload;
+    addSelectInput: (state, action: PayloadAction<SelectInputState>) => {
+      state.push(action.payload);
     },
-    setId: (state, action: PayloadAction<string>) => {
-      state.id = action.payload;
+    updateSelectInput: (state, action: PayloadAction<{index:number, newfield: SelectInputState}>) => {
+      state[action.payload.index] = action.payload.newfield;
     },
-    setName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
-    },
-    setOptions: (
+    removeSelectInput: (
       state,
-      action: PayloadAction<{ value: string; label: string }[]>
+      action: PayloadAction<number>
     ) => {
-      state.options = action.payload;
-    },
-    setStyles: (state, action: PayloadAction<{ [key: string]: string }>) => {
-      state.styles = action.payload;
-    },
-    setValue: (state, action: PayloadAction<string>) => {
-      state.value = action.payload;
+      state.splice(action.payload, 1)
     },
   },
 });
 
-export const {
-  setSelectInput,
-  setId,
-  setName,
-  setOptions,
-  setStyles,
-  setValue,
-} = selectInputSlice.actions;
+export const { addSelectInput, removeSelectInput, updateSelectInput } = selectInputSlice.actions;
 
 export default selectInputSlice.reducer;

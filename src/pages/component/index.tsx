@@ -1,7 +1,8 @@
 import { CheckBox, InputText, RadioBotton, SelectInput } from "@/components/generators ";
+import Block from "@/components/generators/Block ";
 import Save from "@/components/others/Save ";
 import { BlockDescription, Divider } from "@/components/utilities ";
-import { checkBoxInfo, radiobottonInfo, selectInputInfo, textInputInfo } from "@/constants/defaultValues ";
+import { blockInfo, checkBoxInfo, radiobottonInfo, selectInputInfo, textInputInfo } from "@/constants/defaultValues ";
 
 export default function index() {
 
@@ -10,7 +11,7 @@ export default function index() {
       <div className="text-center m-16">
         Form Name
       </div>
-
+      <Block {...blockInfo} />
       <Divider/>
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">

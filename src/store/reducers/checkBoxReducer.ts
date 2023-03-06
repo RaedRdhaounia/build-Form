@@ -1,27 +1,27 @@
 import { CheckBoxState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: CheckBoxState = {
-  label: '',
-  value: false,
-};
+const initialState: CheckBoxState[] = []
 
 const checkBoxSlice = createSlice({
   name: 'checkBox',
   initialState,
   reducers: {
-    setCheckBox: (state, action: PayloadAction<CheckBoxState>) => {
-      return action.payload;
+    addCheckBox: (state, action: PayloadAction<CheckBoxState>) => {
+      state.push(action.payload);
     },
-    setLabel: (state, action: PayloadAction<string>) => {
-      state.label = action.payload;
+    updateCheckBox: (state, action: PayloadAction<{index:number, newfield: CheckBoxState}>) => {
+      state[action.payload.index] = action.payload.newfield;
     },
-    setValue: (state, action: PayloadAction<boolean>) => {
-      state.value = action.payload;
+    removeCheckBox: (
+      state,
+      action: PayloadAction<number>
+    ) => {
+      state.splice(action.payload, 1)
     },
   },
 });
 
-export const { setCheckBox, setLabel, setValue } = checkBoxSlice.actions;
+export const { addCheckBox, removeCheckBox, updateCheckBox } = checkBoxSlice.actions;
 
 export default checkBoxSlice.reducer;
