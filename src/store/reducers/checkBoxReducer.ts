@@ -1,4 +1,4 @@
-import { CheckBoxState } from '@/constants/interfaces ';
+import { CheckBoxState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: CheckBoxState = {

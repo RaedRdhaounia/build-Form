@@ -1,4 +1,4 @@
-import { BlockState } from '@/constants/interfaces ';
+import { BlockState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: BlockState[] = [];
