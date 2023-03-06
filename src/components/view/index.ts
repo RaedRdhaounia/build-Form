@@ -1,2 +1,4 @@
 import NavBar from "./NavBar";
-export { NavBar }
+import Panel from "./Panel";
+import Dependency from "./Dependency";
+export { Dependency, NavBar, Panel }
