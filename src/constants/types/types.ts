@@ -1,3 +1,5 @@
+import { FieldType } from "./interfaces";
+
 export type DependencyP = {
     title : string;
     description : string;
@@ -6,3 +8,4 @@ export type DependencyP = {
       titleId?: string | undefined;
   }>
   }
+export type BlockP = {label: string, description:string, id:string, fields: {type:FieldType, id:string}[]}

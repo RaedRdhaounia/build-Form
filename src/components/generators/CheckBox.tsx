@@ -1,7 +1,7 @@
 export default function CheckBox(props:{label: string, description:string, id:string}) {
     const {description, id, label} = props
   return (
-    <fieldset>
+    <fieldset className="col-span-6">
       <div className="mt-4 space-y-4">
         <div className="flex items-start">
           <div className="flex h-6 items-center">

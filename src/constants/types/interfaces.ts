@@ -3,6 +3,21 @@
 */
 
 // ----- form state interface
+export interface FormReducer {
+  formName: string,
+  blocks : string[]
+}
+
+export interface BoxReducer {
+  label: string,
+  description: string,
+  id: string,
+  fields: Filed[]
+}
+export interface Filed {
+  type: FieldType,
+  id: string
+}
 export interface FormState {
   formId  : string;
   blocks  : Block[];
@@ -20,7 +35,8 @@ export interface Form {
 export interface BlockState {
   id: string;
   name: string;
-  fields: string[];
+  description: string
+  fields: {type: FieldType,  id: string}[];
 }
 // -- singleblock type 
 export interface Block {
@@ -32,7 +48,7 @@ export interface Block {
 
 // ----- filed state interface
 // -- singleFiled type ( global fileds structures)
-type FieldType = 'text' | 'checkbox' | 'radio' | 'select';
+export type FieldType = 'text' | 'checkbox' | 'radio' | 'select';
 
 export interface Field {
   id: string;
@@ -70,10 +86,9 @@ export interface InputFieldState {
 export interface RadioButtonState {
   id: string;
   name: string;
-  options: {
-    value: string;
-    label: string;
-  }[];
+  label: string;
+  description: string;
+  options: string[];
 }
 // -- Select
 export interface SelectInputState {
