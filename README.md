@@ -8,6 +8,8 @@ Form Builder App is a dynamic form builder built with React, Typescript, and Tai
 
 -tailwinduiCSS : [Framework-CSS] ; for the component styles we used tailwindui as a new strong CSS library for faster and quick styles copmponents creation. simply used and more efficated.
 
+- @heroicons/react: [icon-package] ; for icons we are using @heroicons/react that is perfectly consident with our design needs 
+
 # Folder-Structure
 
 Build-Form/
@@ -40,10 +42,10 @@ Build-Form/
 │&&&│&&&|&&& ├── Bottons.tsx  
 │&&&│&&&|&&& └── index.tsx  
 │&&&│&&&├── home  
-│&&&│&&&|&&& ├── Introduction.tsx  
-│&&&│&&&|&&& ├── Description.tsx  
-│&&&│&&&|&&& ├── Footer.tsx  
 │&&&│&&&|&&& ├── Dependiencies.tsx  
+│&&&│&&&|&&& ├── Introduction.tsx  
+│&&&│&&&|&&& ├── LogoList.tsx  
+│&&&│&&&|&&& ├── Quote.tsx  
 │&&&│&&&|&&& └── index.tsx  
 │&&&│&&&├── view  
 │&&&│&&&|&&& ├── NavBar.tsx  
