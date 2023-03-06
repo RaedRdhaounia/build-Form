@@ -15,6 +15,7 @@ Form Builder App is a dynamic form builder built with React, Typescript, and Tai
 Build-Form/
 ├── README.md  
 ├── LICENSE  
+├── netlify.toml  
 ├── next-env.d.tsx  
 ├── next.config.js  
 ├── package.json  
@@ -31,33 +32,30 @@ Build-Form/
 │&&&│&&&|&&& ├── RadioBotton.tsx  
 │&&&│&&&|&&& ├── SelectInput.tsx  
 │&&&│&&&|&&& └── index.tsx  
-│&&&│&&&├── utilities  
-│&&&│&&&|&&& ├── FindComponet.tsx  
-│&&&│&&&|&&& ├── FindStyle.tsx  
-│&&&│&&&|&&& ├── FindValidation.tsx  
-│&&&│&&&|&&& └── index.tsx  
 │&&&│&&&├── others  
 │&&&│&&&|&&& ├── ValidationSuccess.tsx  
 │&&&│&&&|&&& ├── ValidationError.tsx  
 │&&&│&&&|&&& ├── Bottons.tsx  
 │&&&│&&&|&&& └── index.tsx  
 │&&&│&&&├── home  
-│&&&│&&&|&&& ├── Dependiencies.tsx  
 │&&&│&&&|&&& ├── Introduction.tsx  
 │&&&│&&&|&&& ├── LogoList.tsx  
 │&&&│&&&|&&& ├── Quote.tsx  
 │&&&│&&&|&&& └── index.tsx  
-│&&&│&&&├── view  
-│&&&│&&&|&&& ├── NavBar.tsx  
-│&&&│&&&|&&& ├── Panel.tsx  
+│&&&│&&&├── others  
+│&&&│&&&|&&& ├── Save.tsx  
 │&&&│&&&|&&& └── index.tsx  
-│&&&│&&&└── index.tsx  
+│&&&│&&&├── utilities  
+│&&&│&&&|&&& ├── Description.tsx  
+│&&&│&&&|&&& ├── Divider.tsx  
+│&&&│&&&|&&& └── index.tsx  
+│&&&│&&&└── view  
+│&&&│&&&&&&& ├── documentation  
+│&&&│&&&&&&& ├── NavBar.tsx  
+│&&&│&&&&&&& ├── Panel.tsx  
+│&&&│&&&&&&& └── index.tsx  
 │&&&├── constants  
-│&&&│&&&├── translations  
-│&&&│&&&│&&&├── en.json  
-│&&&│&&&│&&&└── index.ts  
-│&&&│&&&├── mocks.ts  
-│&&&│&&&├── initialData.ts  
+│&&&│&&&├── defaultValues.ts  
 │&&&│&&&├── regex.ts  
 │&&&│&&&├── index.ts  
 │&&&│&&&└── types  
@@ -65,6 +63,10 @@ Build-Form/
 │&&&│&&&&&& ├── types.ts  
 │&&&│&&&&&& └── index.ts  
 │&&&├── pages  
+│&&&│&&&├── component  
+│&&&│&&&│&&& └── index.tsx  
+│&&&│&&&├── documentation  
+│&&&│&&&│&&& └── index.tsx  
 │&&&│&&&├── test-redux  
 │&&&│&&&│&&& └── index.tsx  
 │&&&│&&&├── api  
@@ -84,8 +86,7 @@ Build-Form/
 │&&&│&&&├── rootReducer.ts  
 │&&&│&&&└── store.ts  
 │&&&└── Styles  
-│&&&&&& ├── global.css  
-│&&&&&& └── Home.modules.css
+│&&&&&& └── global.css  
 ├── tailwind.config.js  
 ├── postcss.config.ts
 └── tsconfig.json  

@@ -1,4 +1,4 @@
-import { SelectInputState } from '@/constants/interfaces ';
+import { SelectInputState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: SelectInputState = {
