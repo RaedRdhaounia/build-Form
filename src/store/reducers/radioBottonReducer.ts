@@ -1,35 +1,28 @@
 import { RadioButtonState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: RadioButtonState = {
-  id: '',
-  name: '',
-  options: [],
-};
+const initialState: RadioButtonState[] = [];
 
 const radioButtonSlice = createSlice({
   name: 'radioButton',
   initialState,
   reducers: {
-    setRadioButton: (state, action: PayloadAction<RadioButtonState>) => {
-      return action.payload;
+    addRadioButton: (state, action: PayloadAction<RadioButtonState>) => {
+      state.push(action.payload);
     },
-    setId: (state, action: PayloadAction<string>) => {
-      state.id = action.payload;
+    updateRadioButton: (state, action: PayloadAction<{index:number, newfield: RadioButtonState}>) => {
+      state[action.payload.index] = action.payload.newfield;
     },
-    setName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
-    },
-    setOptions: (
+    removeRadioButton: (
       state,
-      action: PayloadAction<{ value: string; label: string }[]>
+      action: PayloadAction<number>
     ) => {
-      state.options = action.payload;
+      state.splice(action.payload, 1)
     },
   },
 });
 
-export const { setRadioButton, setId, setName, setOptions } =
+export const { addRadioButton, removeRadioButton, updateRadioButton} =
   radioButtonSlice.actions;
 
 export default radioButtonSlice.reducer;

@@ -1,40 +1,24 @@
 import { InputFieldState } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: InputFieldState = {
-  id: '',
-  type: '',
-  name: '',
-  styles: {},
-  value: '',
-};
+const initialState: InputFieldState[] = [];
 
 const inputFieldSlice = createSlice({
   name: 'inputField',
   initialState,
   reducers: {
-    setInputField: (state, action: PayloadAction<InputFieldState>) => {
-      return action.payload;
+    addInputText: (state, action: PayloadAction<InputFieldState>) => {
+      state.push(action.payload);
     },
-    setId: (state, action: PayloadAction<string>) => {
-      state.id = action.payload;
+    updateInputText: (state, action: PayloadAction<{index:number, newfield: InputFieldState}>) => {
+      state[action.payload.index] = action.payload.newfield;
     },
-    setType: (state, action: PayloadAction<string>) => {
-      state.type = action.payload;
-    },
-    setName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
-    },
-    setStyles: (state, action: PayloadAction<{ [key: string]: string }>) => {
-      state.styles = action.payload;
-    },
-    setValue: (state, action: PayloadAction<string>) => {
-      state.value = action.payload;
+    removeInputText: ( state, action: PayloadAction<number> ) => {
+      state.splice(action.payload, 1)
     },
   },
 });
 
-export const { setInputField, setId, setType, setName, setStyles, setValue } =
-  inputFieldSlice.actions;
+export const { addInputText, removeInputText, updateInputText } = inputFieldSlice.actions;
 
 export default inputFieldSlice.reducer;

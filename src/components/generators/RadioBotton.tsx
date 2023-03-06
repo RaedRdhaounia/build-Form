@@ -1,3 +1,5 @@
+import { RadioButtonState } from "@/constants/types/interfaces "
+
 function Option(props: {option:string, id:string}){
   const {option, id} = props
   return (
@@ -18,10 +20,10 @@ function Option(props: {option:string, id:string}){
   )
 }
 
-export default function RadioBotton(props: {id: string, label:string, description:string, options:string[]}) {
+export default function RadioBotton(props: RadioButtonState) {
   const {label, description, options, id} = props
   return (
-    <fieldset>
+    <fieldset className="col-span-6">
       <legend className="contents text-sm font-semibold leading-6 text-gray-900">
         {label}
       </legend>

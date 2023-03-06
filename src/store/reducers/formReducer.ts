@@ -5,8 +5,8 @@ interface FormState {
   formName: string;
   blockOrder: string[];
 }
-const initForm = {  formId: "sezez",
-formName: "hello",
+const initForm = {  formId: "",
+formName: "",
 blockOrder: []
 }
 const initialState: FormState = initForm;
