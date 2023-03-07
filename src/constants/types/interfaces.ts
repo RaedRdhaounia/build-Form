@@ -7,23 +7,13 @@ export interface FormReducer {
   formName: string,
   blocks : string[]
 }
-
-export interface BoxReducer {
-  label: string,
-  description: string,
-  id: string,
-  fields: Filed[]
-}
-export interface Filed {
-  type: FieldType,
-  id: string
-}
 export interface FormState {
   formId  : string;
   blocks  : Block[];
   field  ?: FieldState;
   formName: string
 }
+
 
 export interface Form {
   id: string;
@@ -45,11 +35,20 @@ export interface Block {
   fields: Field[];
 }
 
-
+export interface BoxReducer {
+  label: string,
+  description: string,
+  id: string,
+  fields: Filed[]
+}
 // ----- filed state interface
 // -- singleFiled type ( global fileds structures)
 export type FieldType = 'text' | 'checkbox' | 'radio' | 'select';
 
+export interface Filed {
+  type: FieldType,
+  id: string
+}
 export interface Field {
   id: string;
   type: string;
@@ -77,11 +76,7 @@ export interface CheckBoxState {
 // -- Input
 export interface InputFieldState {
   id: string;
-  type: string;
-  name: string;
-  styles: {
-    [key: string]: string;
-  };
+  label: string;
   value: string;
 }
 // -- RadioBotton
