@@ -26,14 +26,18 @@ const blockSlice = createSlice({
      }
      changeDesc(id)
     },
-    removeBlockFiled(state, action: PayloadAction<{ id: string, fieldId: string}>) {
-      const {fieldId, id} = action.payload
-      state.forEach((block) => {
-        block.fields.filter(field => {
-          field.id !== fieldId
-        })
+    removeBlockFiled(state, action: PayloadAction<string>) {
+      let new_state: BoxReducer[] = [];
+      function filt(){
+        for (let index = 0; index < state.length; index++) {
+          const {description, id, label} = state[index]
+          const element = state[index].fields.filter(field => field.id !== action.payload)
+          new_state.push({fields : element, description, id, label})
+          console.log("newState", new_state)
+        }
       }
-      )
+      filt()
+        return new_state;
     },
     addBlockFiled(state, action: PayloadAction<{ index: string, field: Filed}>) {
       const {field, index} = action.payload

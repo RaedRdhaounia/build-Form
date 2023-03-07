@@ -1,5 +1,6 @@
 import { BlockP } from '@/constants/types/types '
 import { addBlockFiled } from '@/store/reducers/blockReducer '
+import { addCheckBox } from '@/store/reducers/checkBoxReducer '
 import { useAppSelector } from '@/store/store '
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -16,14 +17,26 @@ export default function Block(props: BlockP) {
   const dispatch = useDispatch()
   const dragfiled =  useAppSelector(state => state.field.filed)
   const {description, fields, id, label} = props
-  const [dropZone, setDropZone] = useState(false)
 
+  const [dropZone, setDropZone] = useState(false)
   function handleDrop(_event: React.DragEvent){
     const newId = `${(Math.random() *1000000 )}`
     if (dragfiled) {
+      switch (dragfiled) {
+        case "text":
+          break;
+        case "checkbox":
+          dispatch(addCheckBox({description:'description', id:newId, label: "label", value:false}))
+          break;
+        case "radio":
+          break;
+        case "select":
+          break;
+        default:
+          break;
+      }
       dispatch(addBlockFiled({index: id, field: {id: newId, type: dragfiled}}))
     }
-
     handleDropLeave()
   }
   function handleDragOver(_event: React.DragEvent) {
@@ -39,10 +52,9 @@ export default function Block(props: BlockP) {
     <div 
       className={classNames(
       dropZone
-        ? 'bg-purple-700 text-white border-2 border-black border-dotted '
-        : 'text-gray-300  hover:text-white mt-10 sm:mt-0',
-     
-   )}
+        ? 'bg-purple-700  border-2 border-black border-dotted '
+        : 'text-gray-300   mt-10 sm:mt-0',
+      )}
     >
       <Divider/>
       <div

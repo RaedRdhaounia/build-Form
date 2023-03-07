@@ -8,7 +8,7 @@ export default function ConvertType(props: {type: FieldType, id: string}) {
     case "text"    :
       return <InputText   {...textInputInfo  } id={id}/>;
     case "checkbox":
-      return <CheckBox    {...checkBoxInfo   } id={id}/>;
+      return <CheckBox  {...checkBoxInfo} id={id}/>;
     case "radio"   :
       return <RadioBotton {...radiobottonInfo} id={id}/>;
     case "select"  :
