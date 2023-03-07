@@ -43,21 +43,21 @@ function BlockList(props : {index : number, block:string}) {
   }
   return ( blockInfo &&
     <>
-      <div className="flex justify-between" >
+      <div className="flex max-sm:flex-col justify-between  max-sm:justify-center" >
       {edit ?
       <div
        className="ml-10"
       > 
-        <div className="flex items-center">
+        <div className="flex max-sm:flex-col items-center max-sm:items-start">
           <InputChange func={handleLabel} value={updateBlockInfo.label}/>
           <label> label</label>
         </div>
-        <div className="flex items-center">
+        <div className="flex max-sm:flex-col items-center max-sm:items-start">
           <InputChange func={handleDescription} value={updateBlockInfo.description}/>
           <label> description</label>
         </div>
       </div> : <div/>}
-      <div className='flex justify-end mr-10 mt-5 items-baseline'>
+      <div className='flex  justify-end mr-10 mt-5 items-baseline'>
         {!edit ? 
           <PencilIcon width={24} height={24} color="gray" onClick={handleEdit} />
         : 
