@@ -35,8 +35,17 @@ const blockSlice = createSlice({
       }
       )
     },
-    addBlockFiled(state, action: PayloadAction<{ index: number, field: Filed}>) {
-      state[action.payload.index].fields.push(action.payload.field)
+    addBlockFiled(state, action: PayloadAction<{ index: string, field: Filed}>) {
+      const {field, index} = action.payload
+      function changeDesc(_id:string ) {
+        for (var i in state) {
+          if (state[i].id === _id) {
+            state[i].fields.push(field)
+             break; 
+          }
+        }
+      }
+      changeDesc(index)
     },
   },
 });

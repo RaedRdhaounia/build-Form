@@ -9,8 +9,9 @@ export default function BlockButton(props: {formLen: number}) {
   const dispatch = useDispatch()
   const [blockInfo, setBlockInfo] = useState({description:"", label:"", id:`${formLen}`, fields:[]})
   function handleAdd() {
-    dispatch(blockAdd(blockInfo))
-    dispatch(addBlock(`${formLen}`))
+    const newId = `${(Math.random() *1000000 )}`
+    dispatch(blockAdd({...blockInfo, id: newId}))
+    dispatch(addBlock(newId))
   }
   return (
     <div className="px-4 py-3 text-center sm:px-6">
