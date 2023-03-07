@@ -35,7 +35,6 @@ export default function InputText(props:{label: string, value: string, id:string
   function HandleChange(value: string) {
     setTextInputInfo({...textInputInfo, value})
   }
-  console.log("currentInfo.....;", currentInfo)
   return (
     <div>
       <div className="col-span-6">
