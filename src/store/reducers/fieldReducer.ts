@@ -1,29 +1,23 @@
-import { Field, FieldState } from '@/types/interfaces';
+import { FieldType } from '@/types/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: FieldState = {
-  fields: {},
+const initialState : {filed?: FieldType} = {
+  filed : undefined
 };
 
 export const fieldSlice = createSlice({
   name: 'field',
   initialState,
   reducers: {
-    addField: (state, action: PayloadAction<Field>) => {
-      state.fields[action.payload.id] = action.payload;
+    addFiled(state, action: PayloadAction<FieldType>) {
+      state.filed = action.payload
     },
-    updateField: (state, action: PayloadAction<Field>) => {
-      const { id, ...field } = action.payload;
-      state.fields[id] = {
-        ...state.fields[id],
-        ...field,
-      };
-    },
-    removeField: (state, action: PayloadAction<string>) => {
-      delete state.fields[action.payload];
+    removeFiled(state) {
+      state.filed = undefined
+
     },
   },
 });
 
-export const { addField, updateField, removeField } = fieldSlice.actions;
+export const {addFiled, removeFiled } = fieldSlice.actions;
 export default fieldSlice.reducer;
