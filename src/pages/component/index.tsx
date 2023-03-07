@@ -1,6 +1,6 @@
 import Block from "@/components/generators/Block ";
 import Save from "@/components/others/Save ";
-import { blockInfo, FormInfo} from "@/constants/defaultValues ";
+import {FormInfo } from "@/constants/defaultValues ";
 
 export default function index() {
 
