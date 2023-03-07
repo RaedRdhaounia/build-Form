@@ -1,6 +1,7 @@
 import { BlockP } from '@/constants/types/types '
 import { addBlockFiled } from '@/store/reducers/blockReducer '
 import { addCheckBox } from '@/store/reducers/checkBoxReducer '
+import { addInputText } from '@/store/reducers/inputFiledReducer '
 import { useAppSelector } from '@/store/store '
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -24,6 +25,7 @@ export default function Block(props: BlockP) {
     if (dragfiled) {
       switch (dragfiled) {
         case "text":
+          dispatch(addInputText({id:newId, label: "label", value:""}))
           break;
         case "checkbox":
           dispatch(addCheckBox({description:'description', id:newId, label: "label", value:false}))
