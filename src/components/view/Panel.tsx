@@ -11,7 +11,7 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
-      <div className="fixed inset-0 overflow-hidden">
+        <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full ">
               <Transition.Child
@@ -44,7 +44,7 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex h-full flex-col bg-white py-6 shadow-xl">
+                  <div className="flex h-full max-sm:max-w-xs flex-col bg-white py-6 shadow-xl">
                     {formStore.blocks.length < 1 && <BlockButton formLen={formStore.blocks.length} />}
                     {formStore.blocks.length > 0 && 
                     <div className=" flex  bg-white py-10 m-2 justify-between justify-items-center items-baseline ">
@@ -59,8 +59,6 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
               </Transition.Child>
             </div>
           </div>
-          
-
         </div>
       </Dialog>
       </Transition.Root>

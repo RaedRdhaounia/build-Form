@@ -30,7 +30,6 @@ function FormName() {
     />
     <Save func={handleFormName} />
     </div>
-    
   )
 }
 
