@@ -33,7 +33,6 @@ const blockSlice = createSlice({
           const {description, id, label} = state[index]
           const element = state[index].fields.filter(field => field.id !== action.payload)
           new_state.push({fields : element, description, id, label})
-          console.log("newState", new_state)
         }
       }
       filt()
