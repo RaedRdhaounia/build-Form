@@ -71,6 +71,8 @@ export interface AddFieldPayload {
 export interface CheckBoxState {
   label: string;
   value: boolean;
+  id: string;
+  description: string
 }
 // -- Input
 export interface InputFieldState {

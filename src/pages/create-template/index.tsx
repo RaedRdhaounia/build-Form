@@ -5,6 +5,7 @@ import Save from "@/components/others/Save ";
 import InputChange from "@/components/utilities/block/InputChange ";
 import { Panel } from "@/components/view ";
 import { blockAdd, blockRemove, blockUpdate } from "@/store/reducers/blockReducer ";
+import { removeCheckBoxByBlock } from "@/store/reducers/checkBoxReducer ";
 import { addBlock, removeBlock } from "@/store/reducers/formReducer ";
 import { useAppSelector } from "@/store/store ";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
@@ -26,6 +27,7 @@ function BlockList(props : {index : number, block:string}) {
   function handleRemoveBlock() {
     dispatch(removeBlock(block))
     dispatch(blockRemove(block))
+    dispatch(removeCheckBoxByBlock(blockInfo))
     }
   function handleAddBlock() {
     dispatch(blockAdd({...newBlockInfo, id:newId}))
