@@ -1,4 +1,4 @@
-import { BoxReducer, FormReducer } from '@/constants/types/interfaces ';
+import { FormReducer } from '@/constants/types/interfaces ';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: FormReducer = { formName: "Form Name", blocks: [] };
@@ -14,7 +14,8 @@ const formSlice = createSlice({
       state.blocks.push(action.payload)
     },
     removeBlock(state, action: PayloadAction<string>) {
-      state.blocks.filter(block => block !== action.payload)
+      const blocks =  state.blocks.filter(block => block !== action.payload)
+      return {formName: state.formName, blocks}
     },
   },
 });

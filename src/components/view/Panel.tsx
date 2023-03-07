@@ -1,9 +1,13 @@
 import { Dispatch, Fragment, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { useAppSelector } from '@/store/store '
+import BlockButton from '../utilities/panel/BlockButton'
 
 export default function Panel(props : {open: boolean, setOpen: Dispatch<SetStateAction<boolean>>}) {
-    const {open, setOpen} = props
+  const {open, setOpen} = props
+  const formStore = useAppSelector(store => store.form)
+  
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -41,11 +45,14 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
                     </div>
                   </Transition.Child>
                   <div className="flex h-full flex-col bg-white py-6 shadow-xl">
-                    <div className="px-4 sm:px-6">
-                      <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                        Panel title
-                      </Dialog.Title>
-                    </div>
+                    {formStore.blocks.length < 1 && <BlockButton formLen={formStore.blocks.length} />}
+                    {formStore.blocks.length > 0 && 
+                    <div className=" flex  bg-white py-10 m-2 justify-between justify-items-center items-baseline ">
+                      <dt className="text-sm font-medium text-gray-500">add item</dt>
+                      <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 mr-9"><PlusIcon width={25} height={25}  /></dd>
+                    </div>}
+                    
+                    
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
                   </div>
                 </Dialog.Panel>

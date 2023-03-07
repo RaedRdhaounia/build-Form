@@ -7,24 +7,24 @@ const blockSlice = createSlice({
   name: 'block',
   initialState,
   reducers: {
-    addBlock(state, action: PayloadAction<BoxReducer>) {
+    blockAdd(state, action: PayloadAction<BoxReducer>) {
       state.push(action.payload);
     },
-    removeBlock(state, action: PayloadAction<string>) {
-      state.filter(block => block.id !== action.payload)
+    blockRemove(state, action: PayloadAction<string>) {
+      const blocks =  state.filter(block => block.id !== action.payload)
+      return [...blocks]
     },
-    updateBlock(state, action: PayloadAction<{ id: string, description:string, label: string }>) {
-      const {description, id, label} = action.payload
-      state.forEach(block =>{
-        if(block.id === id) {
-          if (description) {
-            block.description = description;
-          }
-          if (label) {
-            block.label = label
+    blockUpdate(state, action: PayloadAction<BoxReducer>) {
+      const {id} = action.payload
+      function changeDesc(_id:string ) {
+        for (var i in state) {
+          if (state[i].id === _id) {
+            state[i] = action.payload
+             break; 
           }
         }
-      })
+     }
+     changeDesc(id)
     },
     removeBlockFiled(state, action: PayloadAction<{ id: string, fieldId: string}>) {
       const {fieldId, id} = action.payload
@@ -41,6 +41,6 @@ const blockSlice = createSlice({
   },
 });
 
-export const { addBlock, addBlockFiled, removeBlock, removeBlockFiled, updateBlock } = blockSlice.actions;
+export const { blockAdd, addBlockFiled, blockRemove, removeBlockFiled, blockUpdate } = blockSlice.actions;
 
 export default blockSlice.reducer;
