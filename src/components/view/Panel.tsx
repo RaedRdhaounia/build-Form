@@ -12,7 +12,6 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
   const {open, setOpen} = props
   const formStore = useAppSelector(store => store.form)
   const [active, setActive] = useState<FieldType>("text")
-  const [selectedItem, setSelectedItem] = useState("")
   function handleActive(_active:FieldType){
     setActive(_active)
   }
@@ -60,7 +59,7 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
                         <SelectFiled handleActive={handleActive}/>
                         <div 
                           onDragLeave={() => setOpen(!open)} 
-                          className="relative mt-6 flex-1 px-4 sm:px-6"
+                          className="relative mt-6 flex-1 px-4 sm:px-2"
                         >
                           <SelectedItem setOpen={setOpen} type={active} id="0" /> 
                         </div>
