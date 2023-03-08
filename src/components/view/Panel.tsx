@@ -52,7 +52,7 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
                     </div>
                   </Transition.Child>
                   <div className="flex h-full max-sm:max-w-xs flex-col bg-white py-6 shadow-xl">
-                    {formStore.blocks.length < 1 &&  <BlockButton formLen={formStore.blocks.length} /> }
+                    {formStore.blocks.length < 1 &&  <BlockButton /> }
                     {formStore.blocks.length > 0 &&
                       <>
                         <Title/>
