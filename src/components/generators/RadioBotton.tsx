@@ -1,3 +1,4 @@
+// after fix comonent utilities need to clean up this code
 import { RadioButtonState } from "@/constants/types/interfaces "
 
 function Option(props: {value:string, label:string, id: string}){
