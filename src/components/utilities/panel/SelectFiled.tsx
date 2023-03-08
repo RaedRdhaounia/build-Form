@@ -17,7 +17,7 @@ function SelectFiled(props:{handleActive:(_active:FieldType) => void }) {
   } 
 
   return (
-    <div className="p-4 flex flex-row" >
+    <div className="p-4 flex flex-col" >
       {fileds.map((item) => (
         <div
           className={classNames( active === item.name

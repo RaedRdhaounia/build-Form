@@ -1,6 +1,6 @@
+
 import { BookmarkSquareIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
 import InputChange from "../utilities/block/InputChange"
 
 type ListValuesP = {
@@ -12,7 +12,6 @@ type ListValuesP = {
 }
 
 export default function ListValues(props : ListValuesP) {
-  const dispatch = useDispatch()  
   const {option, handleRemoveLabel, handleAddLabel, handleUpdateLabel} = props
   const [Label, setLabel ] =useState(option?.label)
   return (
@@ -20,12 +19,12 @@ export default function ListValues(props : ListValuesP) {
       <label>
         options list
       </label>
-          <div className="flex justify-center items-center content-baseline">
-            <InputChange func={setLabel} value={Label}/>
-            <BookmarkSquareIcon width={25} height={25} color="blue" onClick={() => handleUpdateLabel(option.value,Label)}  />
-            <PlusIcon  width={25} height={25} color="blue" onClick={() => handleAddLabel(Label)} />
-            <TrashIcon width={25} height={25} color="blue" onClick={handleRemoveLabel}  />
-          </div>
+      <InputChange func={setLabel} value={Label}/>
+        <div className="flex  content-baseline">
+          <BookmarkSquareIcon width={25} height={25} color="green" onClick={() => handleUpdateLabel(option.value,Label)}  />
+          <PlusIcon  width={25} height={25} color="blue" onClick={() => handleAddLabel(Label)} />
+          <TrashIcon width={25} height={25} color="red" onClick={handleRemoveLabel}  />
+        </div>
     </div>
   )
 }

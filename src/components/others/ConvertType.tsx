@@ -3,6 +3,7 @@ import { FieldType } from "@/constants/types/interfaces ";
 import { InputText, CheckBox, RadioBotton, SelectInput } from "../generators";
 
 export default function ConvertType(props: {type: FieldType, id: string}) {
+
   const {id, type} = props
   switch (type) {
     case "text"    :
