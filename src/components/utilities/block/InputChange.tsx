@@ -1,4 +1,11 @@
-export default function InputChange(props: {value:string, func: (value:string) => void}) {
+// import types
+import { inputChangesP } from "@/constants/types/types "
+
+ /*
+/  / ----- Component InputChange input created to dispatch update data values
+ */
+
+export default function InputChange(props: inputChangesP) {
   const {func, value} = props
   return (
     <input
