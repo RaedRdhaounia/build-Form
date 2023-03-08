@@ -36,6 +36,7 @@ export default function CheckBox(props:CheckBoxState) {
       if (checkBoxInfo?.value !== undefined) {
         dispatch(updateCheckBox({index:currentInfo.id, newfield:{...checkBoxInfo, label: Label, description: Description}}))
       }
+      handleEdit()
     }
     function handleRemove() {
       dispatch(removeCheckBox(checkBoxInfo?.id))
@@ -49,7 +50,7 @@ export default function CheckBox(props:CheckBoxState) {
             <input
               onChange={handelCheck}
               checked={checkBoxInfo?.value || checked}
-              id={checkBoxInfo?.id || id}
+              id={currentInfo?.id || id}
               name={`checkbox-${id}`}
               type="checkbox"
               className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -57,9 +58,9 @@ export default function CheckBox(props:CheckBoxState) {
           </div>
           <div className="ml-3">
             <label htmlFor="candidates" className="text-sm font-medium leading-6 text-gray-900">
-              {checkBoxInfo?.label || label}
+              {currentInfo?.label || label}
             </label>
-            <p className="text-sm text-gray-500">{checkBoxInfo?.description || description }</p>
+            <p className="text-sm text-gray-500">{currentInfo?.description || description }</p>
           </div>
         </div>
         {currentInfo &&   

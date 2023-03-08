@@ -8,4 +8,6 @@ export type DependencyP = {
       titleId?: string | undefined;
   }>
   }
+
+export type FormP  = { formName: string, blocks : BlockP[] }
 export type BlockP = {label: string, description:string, id:string, fields: {type:FieldType, id:string}[]}

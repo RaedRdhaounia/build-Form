@@ -1,19 +1,12 @@
- /* 
-/ / ---- store interfaces
-*/
+  // /*                               */  //
+ /* /  /---- store interfaces --------/  */
+// /*                               */  //
 
-// ----- form state interface
+// ----- form state interface ----- //
 export interface FormReducer {
   formName: string,
   blocks : string[]
 }
-export interface FormState {
-  formId  : string;
-  blocks  : Block[];
-  field  ?: FieldState;
-  formName: string
-}
-
 
 export interface Form {
   id: string;
@@ -21,34 +14,30 @@ export interface Form {
   blockOrder: string[];
 }
 
-// ----- block state interface
-export interface BlockState {
-  id: string;
-  name: string;
-  description: string
-  fields: {type: FieldType,  id: string}[];
-}
-// -- singleblock type 
+// ----- block state interface ----- //
 export interface Block {
   id: string;
   name: string;
   fields: Field[];
 }
-
 export interface BoxReducer {
   label: string,
   description: string,
   id: string,
   fields: Filed[]
 }
-// ----- filed state interface
+
+// ----- filed state interface ----- //
+
 // -- singleFiled type ( global fileds structures)
 export type FieldType = 'text' | 'checkbox' | 'radio' | 'select';
 
+// ---- Field element
 export interface Filed {
   type: FieldType,
   id: string
 }
+// ---- filed stats
 export interface Field {
   id: string;
   type: string;
@@ -56,24 +45,19 @@ export interface Field {
   styles: object;
   value: string;
 }
-
+// -- Field element store
 export interface FieldState {
   fields: { [key: string]: Field };
 }
 
-export interface AddFieldPayload {
-  blockId: string;
-  fieldType: FieldType;
-  fieldName: string;
-}
-// -- checkBox
+// -- Check Box
 export interface CheckBoxState {
   label: string;
   value: boolean;
   id: string;
   description: string
 }
-// -- Input
+// -- Input Filed
 export interface InputFieldState {
   id: string;
   label: string;
@@ -87,16 +71,12 @@ export interface RadioButtonState {
   description: string;
   options: string[];
 }
-// -- Select
+// -- Select Input
 export interface SelectInputState {
     id: string;
-    name: string;
+    label: string;
     options: {
       value: string;
       label: string;
     }[];
-    styles: {
-      [key: string]: string;
-    };
-    value: string;
   }
