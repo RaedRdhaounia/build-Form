@@ -1,30 +1,33 @@
+import { useRouter } from 'next/router'
+// -- icons imports 
 import { Disclosure, Menu } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, DocumentTextIcon, AtSymbolIcon } from '@heroicons/react/24/outline'
-import { useRouter } from 'next/router'
+// ---- util functions imports
+import { classNames } from '../utilities/functions'
 
 // static APi
-const user = {
-  name    : 'Raed Rdhaounia',
-  email   : 'raedrdhaounia@gmail.com',
-  imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/305990127_1765340950498185_6065078766403284064_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=MbxVATgBX-AAX8Wnm0u&_nc_ht=scontent.ftun9-1.fna&oh=00_AfA33mJqVTxd8rzklyGi5KjRn8GOmwHqyquPtZmUGAuoag&oe=6402925C'
-}
 
-
-// move to utility
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function NavBar(props: {children: JSX.Element}) {
   const router = useRouter()
   const {children} = props
+// ---- local data 
+// -- user based data
+  const user = {
+    name    : 'Raed Rdhaounia',
+    email   : 'raedrdhaounia@gmail.com',
+    imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/305990127_1765340950498185_6065078766403284064_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=MbxVATgBX-AAX8Wnm0u&_nc_ht=scontent.ftun9-1.fna&oh=00_AfA33mJqVTxd8rzklyGi5KjRn8GOmwHqyquPtZmUGAuoag&oe=6402925C'
+  }
+// -- navigation data
   const navigation = [
     { id: '/'               ,name: 'DASHBOARD'               , href: '/'              , current:(_id: string) => _id === router.asPath  },
     { id: '/documentation'  ,name: 'DOCUMENTATION'           , href: 'documentation'  , current:(_id: string) => _id === router.asPath  },
     { id: '/component'      ,name: 'COMPONENTS'              , href: 'component'      , current:(_id: string) => _id === router.asPath  },
     { id: '/create-template',name: 'CREATE YOUR OWN TEMPLATE', href: 'create-template', current:(_id: string) => _id === router.asPath  },
   ]
-  return (<>
+
+  return (
+    <>
       <Disclosure as="nav" className="bg-purple-900">
       {({ open }) => (
         <>
@@ -45,16 +48,17 @@ export default function NavBar(props: {children: JSX.Element}) {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current(item.id)
-                            ? 'bg-gray-900 text-white'
-                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current(item.id)?
+                            'bg-gray-900 text-white'
+                          :
+                          'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current(item.id) ? 'page' : undefined}
                       >
                         {item.name}
                       </a>
-                      )})}
+                    )})}
                   </div>
                 </div>
                 <div className="block md:hidden justify-center">
@@ -69,7 +73,6 @@ export default function NavBar(props: {children: JSX.Element}) {
                     type="button"
                     className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
-                    {/* add navigation contacts */}
                     <AtSymbolIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                   <button
@@ -79,7 +82,6 @@ export default function NavBar(props: {children: JSX.Element}) {
                     <span className="sr-only">View Code</span>
                     <DocumentTextIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
-                          {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -147,9 +149,9 @@ export default function NavBar(props: {children: JSX.Element}) {
           </Disclosure.Panel>
         </>
       )}
-    </Disclosure>
+      </Disclosure>
     {children}
-  </>
+   ,</>
 
   )
 };
