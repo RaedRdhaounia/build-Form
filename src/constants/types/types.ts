@@ -1,4 +1,4 @@
-import { FieldType } from "./interfaces";
+import { CheckBoxState, FieldType, InputFieldState, SelectInputState } from "./interfaces";
 
 export type DependencyP = {
     title : string;
@@ -11,3 +11,5 @@ export type DependencyP = {
 
 export type FormP  = { formName: string, blocks : BlockP[] }
 export type BlockP = {label: string, description:string, id:string, fields: {type:FieldType, id:string}[]}
+
+export type FindByIndexT =  InputFieldState[] | SelectInputState[] | CheckBoxState[]

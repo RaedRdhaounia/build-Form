@@ -1,26 +1,33 @@
-import { BlockP } from '@/constants/types/types '
+import { useState } from 'react'
+// ---- store imports
+// -- action store functions import 
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from '@/store/store '
+// -- reducers import
 import { addBlockFiled } from '@/store/reducers/blockReducer '
 import { addCheckBox } from '@/store/reducers/checkBoxReducer '
 import { addInputText } from '@/store/reducers/inputFiledReducer '
 import { addSelectInput } from '@/store/reducers/selectInputReducer '
-import { useAppSelector } from '@/store/store '
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+// ---- components imports 
 import ConvertType from '../others/ConvertType'
 import Save from '../others/Save'
 import { BlockDescription, Divider } from '../utilities'
-import { newId } from '../utilities/functions'
-
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+// ---- util functions imports
+import { classNames, newId } from '../utilities/functions'
+// types imports 
+import { BlockP } from '@/constants/types/types '
 
 export default function Block(props: BlockP) {
   const dispatch = useDispatch()
-  const dragfiled =  useAppSelector(state => state.field.filed)
   const {description, fields, id, label} = props
+//---- drag
+// -- current drop status
+  const dragfiled =  useAppSelector(state => state.field.filed)
+// -- local drop status
   const [dropZone, setDropZone] = useState(false)
+
+// ------ action functions ------
+// -- drop  item
   function handleDrop(_event: React.DragEvent){
     const createId = newId()
     if (dragfiled) {
@@ -43,21 +50,26 @@ export default function Block(props: BlockP) {
     }
     handleDropLeave()
   }
+// -- drop item get end
   function handleDragOver(_event: React.DragEvent) {
     _event.preventDefault()
   }
+// -- enter block component
   function handleDropEnter() {
     setDropZone(true)
   }
+// -- leave block component
   function handleDropLeave() {
     setDropZone(false)
   }
+
   return (
     <div 
       className={classNames(
-      dropZone
-        ? 'bg-purple-700  border-2 border-black border-dotted '
-        : 'text-gray-300   mt-10 sm:mt-0',
+      dropZone?
+        'bg-purple-700  border-2 border-black border-dotted '
+      : 
+        'text-gray-300   mt-10 sm:mt-0',
       )}
     >
       <Divider/>
@@ -72,18 +84,16 @@ export default function Block(props: BlockP) {
             <BlockDescription title={label} discription={description}/>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-              <div className="overflow-hidden shadow sm:rounded-md">
-                <div className="bg-white px-4 py-5 sm:p-6">
-                  <div className="grid grid-cols-1 gap-6">
-                    {fields.map((field, index) => {
-                      return (
-                       <ConvertType key={index} id={field.id} type={field.type} />
-                      )
-                    })}
-                  </div>
+            <div className="overflow-hidden shadow sm:rounded-md">
+              <div className="bg-white px-4 py-5 sm:p-6">
+                <div className="grid grid-cols-1 gap-6">
+                  {fields.map((field, index) => {
+                    return ( <ConvertType key={index} id={field.id} type={field.type} /> )
+                  })}
                 </div>
-                <Save/>
               </div>
+              <Save/>
+            </div>
           </div>
         </div>
       </div>

@@ -1,47 +1,58 @@
-import { CheckBoxState } from "@/constants/types/interfaces ";
+import { useState } from "react"
+// ---- store imports
+// -- action store functions import
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/store/store "
+// -- reducers import
 import { removeBlockFiled } from "@/store/reducers/blockReducer ";
 import { removeCheckBox, updateCheckBox } from "@/store/reducers/checkBoxReducer ";
-import { useAppSelector } from "@/store/store "
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useState } from "react"
-import { useDispatch } from "react-redux";
+// ---- components imports 
 import Save from "../others/Save";
 import InputChange from "../utilities/block/InputChange";
-
-function findIndexById(_arr:CheckBoxState[] , _id: string) {
-  return _arr.findIndex(obj => obj.id === _id);
-}
+// -- icons imports 
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+// ---- util functions imports
+import { findIndexById } from "../utilities/functions";
+// types imports 
+import { CheckBoxState } from "@/constants/types/interfaces ";
 
 export default function CheckBox(props:CheckBoxState) {
-    const dispatch = useDispatch()
-    const {description, id, label, value} = props
-    const CheckBocInfo = useAppSelector(state => state.checkbox)
-    const currentInfo = CheckBocInfo[findIndexById(CheckBocInfo, id)]
-    const [checked, setChecked] = useState<boolean>(value)
-    const [checkBoxInfo, setCheckBoxInfo] = useState(currentInfo)
-    const [Label, setLabel] = useState(checkBoxInfo?.label)
-    const [Description, setDescription] = useState(checkBoxInfo?.description)
-    const [edit, setEdit] = useState(false)
-    function handelCheck() {
-      if (checkBoxInfo?.value !== undefined) {
-        setCheckBoxInfo({...checkBoxInfo, value: !checkBoxInfo.value})
-      } else {
-        setChecked(!checked)
-      }
+  const dispatch = useDispatch()
+  const {description, id, label, value} = props
+
+// ----- store selct - convert id -
+  const CheckBocInfo = useAppSelector(state => state.checkbox)
+  const currentInfo = CheckBocInfo[findIndexById(CheckBocInfo, id)]
+
+// ----- local - states -
+  const [checked     , setChecked     ] = useState<boolean>(value)
+  const [edit        , setEdit        ] = useState<boolean>(false)
+  const [checkBoxInfo, setCheckBoxInfo] = useState<CheckBoxState>(currentInfo)
+  const [Label       , setLabel       ] = useState<string>(checkBoxInfo?.label      )
+  const [Description , setDescription ] = useState<string>(checkBoxInfo?.description)
+
+// ------ action functions ------
+  function handelCheck() {
+    if (checkBoxInfo?.value !== undefined) {
+      setCheckBoxInfo({...checkBoxInfo, value: !checkBoxInfo.value})
+    } else {
+      setChecked(!checked)
     }
-    function handleEdit(){
-      setEdit(!edit)
+  }
+  function handleEdit(){
+    setEdit(!edit)
+  }
+  function handleUpdate() {
+    if (checkBoxInfo?.value !== undefined) {
+      dispatch(updateCheckBox({index:currentInfo.id, newfield:{...checkBoxInfo, label: Label, description: Description}}))
     }
-    function handleUpdate() {
-      if (checkBoxInfo?.value !== undefined) {
-        dispatch(updateCheckBox({index:currentInfo.id, newfield:{...checkBoxInfo, label: Label, description: Description}}))
-      }
-      handleEdit()
-    }
-    function handleRemove() {
-      dispatch(removeCheckBox(checkBoxInfo?.id))
-      dispatch(removeBlockFiled(checkBoxInfo.id))
-    }
+    handleEdit()
+  }
+  function handleRemove() {
+    dispatch(removeCheckBox(checkBoxInfo?.id))
+    dispatch(removeBlockFiled(checkBoxInfo.id))
+  }
+
   return (
     <fieldset className="col-span-6">
       <div className="mt-4 space-y-4 flex justify-between flex-col">
@@ -66,12 +77,13 @@ export default function CheckBox(props:CheckBoxState) {
         {currentInfo &&   
           <div className="flex" >
             {!edit ? 
-            <PencilIcon className="cursor-pointer" width={25} height={25} color="gray" onClick={handleEdit} /> :
-            <div className="flex flex-col"> 
-              <InputChange func={setLabel} value={Label} />
-              <InputChange func={setDescription} value={Description} />
-              <Save func={handleUpdate}/>
-            </div>
+              <PencilIcon className="cursor-pointer" width={25} height={25} color="gray" onClick={handleEdit} />
+            :
+              <div className="flex flex-col"> 
+                <InputChange func={setLabel} value={Label} />
+                <InputChange func={setDescription} value={Description} />
+                <Save func={handleUpdate}/>
+              </div>
             }
             <TrashIcon className="cursor-pointer" width={25} height={25} color='red' onClick={handleRemove} />
           </div>
