@@ -1,24 +1,38 @@
-import AddFiled from "@/components/others/AddField ";
-import ConvertType from "@/components/others/ConvertType ";
-import { FieldType } from "@/constants/types/interfaces ";
+import { DragEvent, useState } from "react";
+// -- action store functions import 
+import { useAppSelector } from "@/store/store ";
+import { useDispatch } from "react-redux";
+// -- reducers import
 import { addBlockFiled } from "@/store/reducers/blockReducer ";
 import { addCheckBox } from "@/store/reducers/checkBoxReducer ";
 import { addFiled } from "@/store/reducers/fieldReducer ";
 import { addInputText } from "@/store/reducers/inputFiledReducer ";
 import { addSelectInput } from "@/store/reducers/selectInputReducer ";
-import { useAppSelector } from "@/store/store ";
-import { DragEvent, useState } from "react";
-import { useDispatch } from "react-redux";
+// ---- components imports 
+import AddFiled from "@/components/others/AddField ";
+import ConvertType from "@/components/others/ConvertType ";
+// ---- util functions imports
 import { newId } from "../functions";
 import { Size, useWindowSize } from "../SizeWindow";
+// types imports 
+import { selectItemdP } from "@/constants/types/types ";
 
-export default function SelectedItem(props:{type:FieldType, id:string, setOpen:(open:boolean)=>void}) {
+ /*
+/  / ----- Component SelectedItem created to dispatch add new filed from the panel as 2 method drag with widh screen more than 1200px and click methode with other devices
+ */
+
+export default function SelectedItem(props:selectItemdP) {
   const dispatch = useDispatch()
+  const {id, type, setOpen} = props;
+// interface sizing
   const size: Size = useWindowSize();
   const WindowSize = size !=undefined && typeof(size.width) === "number" &&  size.width > 1200
-  const {id, type, setOpen} = props;
+// ----- store selct - convert id -
   const BlockIdInfo = useAppSelector(state => state.block)
+// ----- local - states -
   const [BlockId, setBlockId] = useState(BlockIdInfo[0].id)
+
+// ------ action functions ------
   function handleAdd(){
     const createId = newId()
     switch (type) {
@@ -38,7 +52,6 @@ export default function SelectedItem(props:{type:FieldType, id:string, setOpen:(
     }
     dispatch(addBlockFiled({index: BlockId, field: {id: createId, type: type}}))
     setOpen(false)
-
   }
   function handleOnDrag(event: DragEvent<HTMLDivElement>){
     if (WindowSize) {
@@ -48,7 +61,8 @@ export default function SelectedItem(props:{type:FieldType, id:string, setOpen:(
     setOpen(false)
   }
 
-  return (!WindowSize ? 
+  return (
+  !WindowSize ? 
     <div className="flex justify-center flex-col">
       <AddFiled func={handleAdd} />
       <select
@@ -65,7 +79,7 @@ export default function SelectedItem(props:{type:FieldType, id:string, setOpen:(
         })}
       </select>
     </div>
-     :
+  :
     <div
       draggable={WindowSize}
       onDrag={(event)=> handleOnDrag(event)}

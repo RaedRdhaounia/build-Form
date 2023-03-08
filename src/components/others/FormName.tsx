@@ -1,15 +1,29 @@
-import { setFormName } from '@/store/reducers/formReducer '
+import { useState } from 'react'
+// ---- store imports
+// -- action store functions import 
+import { useDispatch    } from 'react-redux'
 import { useAppSelector } from '@/store/store '
-import { PencilIcon } from '@heroicons/react/24/outline'
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+// -- reducers import
+import { setFormName } from '@/store/reducers/formReducer '
+// ---- components imports 
 import Save from './Save'
+// ---- icons imports 
+import { PencilIcon } from '@heroicons/react/24/outline'
 
-function FormName() {
+ /*
+/  / ----- Component FormName created to execute, controle and update the form name of the form builder
+ */
+
+export default function FormName() {
   const dispatch = useDispatch()
+// ----- store selct - convert dispatch form Name -
   const FormNameInfo = useAppSelector(state => state.form.formName)
+
+// ----- local - states -
   const [updateFormName, setUpdateFormName] = useState(FormNameInfo)
-  const [edit, setEdit] = useState(true)
+  const [edit          , setEdit          ] = useState(true)
+
+// ------ action functions ------
   function handleEdit(){
     setEdit(!edit)
   }
@@ -24,13 +38,11 @@ function FormName() {
     </div>
     :
     <div className="text-center m-16 flex justify-center">
-    <input
-      className="m-2 text-center block max-w-sm rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-      onChange={(e) => setUpdateFormName(e.target.value)}
-    />
-    <Save func={handleFormName} />
+      <input
+        className="m-2 text-center block max-w-sm rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        onChange={(e) => setUpdateFormName(e.target.value)}
+      />
+      <Save func={handleFormName} />
     </div>
   )
 }
-
-export default FormName

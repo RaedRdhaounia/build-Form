@@ -16,7 +16,6 @@ import { findIndexById } from "../utilities/functions";
 // types imports 
 import { InputFieldState } from "@/constants/types/interfaces ";
 
-
 export default function InputText(props: InputFieldState) {
   const dispatch = useDispatch()
   const {id, label, value} = props
