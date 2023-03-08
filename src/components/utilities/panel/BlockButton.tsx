@@ -3,15 +3,16 @@ import { addBlock } from "@/store/reducers/formReducer "
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import Divider from "../Divider"
+import { newId } from "../functions"
 
 export default function BlockButton(props: {formLen: number}) {
   const {formLen} = props
   const dispatch = useDispatch()
   const [blockInfo, setBlockInfo] = useState({description:"", label:"", id:`${formLen}`, fields:[]})
   function handleAdd() {
-    const newId = `${(Math.random() *1000000 )}`
-    dispatch(blockAdd({...blockInfo, id: newId}))
-    dispatch(addBlock(newId))
+    const createId = newId()
+    dispatch(blockAdd({...blockInfo, id: createId}))
+    dispatch(addBlock(createId))
   }
   return (
     <div className="px-4 py-3 text-center sm:px-6">

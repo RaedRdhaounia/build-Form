@@ -27,6 +27,7 @@ export default function InputText(props:{label: string, value: string, id:string
     if (textInputInfo?.value !== undefined) {
       dispatch(updateInputText({index:currentInfo.id, newfield:{...textInputInfo, value, label:Label}}))
     }
+    handleEdit()
   }
   function handleRemove() {
     dispatch(removeInputText(textInputInfo?.id))
@@ -39,7 +40,7 @@ export default function InputText(props:{label: string, value: string, id:string
     <div>
       <div className="col-span-6">
         <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
-          {textInputInfo?.label || label}
+          {currentInfo?.label || label}
         </label>
         <input
           onChange={(e) => HandleChange(e.target.value)}
