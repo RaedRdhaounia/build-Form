@@ -63,7 +63,7 @@ export default function SelectInput(props: SelectInputState) {
             </option>
           )
         })}
-         {options && options.map((option,index) => {
+         {! currentInfo  && options && options.map((option,index) => {
           return (
             <option key={index} value={option?.value}>
               {option?.label}

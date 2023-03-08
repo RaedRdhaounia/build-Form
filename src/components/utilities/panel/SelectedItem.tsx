@@ -66,13 +66,14 @@ export default function SelectedItem(props:selectItemdP) {
     <div className="flex justify-center flex-col">
       <AddFiled func={handleAdd} />
       <select
+        onChange={(e) => setBlockId(e.target.value)}
         id={`select-block`}
         name={`select-block`}
         className="mt-2 block rounded-md border-0 bg-white py-1.5 text-center text-black shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       >
         {BlockIdInfo && BlockIdInfo.map((option,index) => {
           return (
-            <option key={index} onChange={() => setBlockId(option.id)} className="text-center" value={option.id}>
+            <option key={index} className="text-center" value={option.id}>
               {option.label}
             </option>
           )
