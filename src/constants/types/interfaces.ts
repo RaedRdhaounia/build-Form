@@ -66,10 +66,12 @@ export interface InputFieldState {
 // -- RadioBotton
 export interface RadioButtonState {
   id: string;
-  name: string;
   label: string;
   description: string;
-  options: string[];
+  options: {
+    value: string;
+    label: string;
+  }[];
 }
 // -- Select Input
 export interface SelectInputState {

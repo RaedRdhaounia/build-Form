@@ -1,25 +1,36 @@
-import { InputFieldState } from "@/constants/types/interfaces ";
+// ---- store imports
+import { useState } from "react";
+// -- action store functions import 
+import { useDispatch } from "react-redux"
+import { useAppSelector } from "@/store/store "
+// -- reducers import
 import { removeBlockFiled } from "@/store/reducers/blockReducer ";
 import { removeInputText, updateInputText } from "@/store/reducers/inputFiledReducer ";
-import { useAppSelector } from "@/store/store "
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import { useDispatch } from "react-redux"
+// ---- components imports 
 import Save from "../others/Save";
 import InputChange from "../utilities/block/InputChange";
+// -- icons imports 
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+// ---- util functions imports
+import { findIndexById } from "../utilities/functions";
+// types imports 
+import { InputFieldState } from "@/constants/types/interfaces ";
 
-function findIndexById(_arr:InputFieldState[] , _id: string) {
-  return _arr.findIndex(obj => obj.id === _id);
-}
 
-export default function InputText(props:{label: string, value: string, id:string}) {
-  const {id, label, value} = props
+export default function InputText(props: InputFieldState) {
   const dispatch = useDispatch()
+  const {id, label, value} = props
+
+// ----- store selct - convert id -
   const TextInputInfo = useAppSelector(state => state.textField)
   const currentInfo = TextInputInfo[findIndexById(TextInputInfo, id)]
+
+// ----- local - states -
   const [textInputInfo, setTextInputInfo] = useState(currentInfo)
   const [Label, setLabel] = useState<string>(textInputInfo?.label)
   const [edit, setEdit] = useState(false)
+
+// ------ action functions ------
   function handleEdit(){
     setEdit(!edit)
   }
@@ -36,6 +47,7 @@ export default function InputText(props:{label: string, value: string, id:string
   function HandleChange(value: string) {
     setTextInputInfo({...textInputInfo, value})
   }
+
   return (
     <div>
       <div className="col-span-6">
@@ -55,7 +67,8 @@ export default function InputText(props:{label: string, value: string, id:string
       {currentInfo &&   
         <div className={edit ? "justify-between flex items-baseline align-baseline ": "flex items-baseline align-baseline"} >
           {!edit ? 
-            <PencilIcon className="cursor-pointer" width={25} height={25} color="gray" onClick={handleEdit} /> :
+            <PencilIcon className="cursor-pointer" width={25} height={25} color="gray" onClick={handleEdit} />
+          :
             <div> 
               <InputChange func={setLabel} value={Label} />
               <Save func={handleUpdate}/>
