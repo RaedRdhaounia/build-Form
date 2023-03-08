@@ -44,7 +44,7 @@ export default function CheckBox(props:CheckBoxState) {
     }
   return (
     <fieldset className="col-span-6">
-      <div className="mt-4 space-y-4 flex justify-between">
+      <div className="mt-4 space-y-4 flex justify-between flex-col">
         <div className="flex items-start">
           <div className="flex h-6 items-center">
             <input
@@ -67,7 +67,7 @@ export default function CheckBox(props:CheckBoxState) {
           <div className="flex" >
             {!edit ? 
             <PencilIcon className="cursor-pointer" width={25} height={25} color="gray" onClick={handleEdit} /> :
-            <div> 
+            <div className="flex flex-col"> 
               <InputChange func={setLabel} value={Label} />
               <InputChange func={setDescription} value={Description} />
               <Save func={handleUpdate}/>

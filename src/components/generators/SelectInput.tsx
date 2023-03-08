@@ -16,7 +16,7 @@ function findIndexById(_arr:SelectInputState[] , _id: string) {
 
 export default function SelectInput(props: {label: string, id: string, options:string[]}) {
   const dispatch = useDispatch()
-  const {id, label, options} = props
+  const {id, label} = props
   const SelectInputInfo = useAppSelector(state => state.selectInput)
   const currentInfo = SelectInputInfo[findIndexById(SelectInputInfo, id)]
   const [Options, setOptions] = useState(currentInfo?.options)
@@ -39,7 +39,7 @@ export default function SelectInput(props: {label: string, id: string, options:s
     dispatch(addnewEmptyLabel({id: currentInfo.id, valueId: createId}))
   }
   return (
-    <div className="col-span-6">
+    <div className="col-span-6 flex flex-col">
       <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
         {Label || label}
       </label>
@@ -57,7 +57,7 @@ export default function SelectInput(props: {label: string, id: string, options:s
         })}
       </select>
       {currentInfo &&   
-          <div className="flex" >
+          <div className="flex flex-row" >
             {edit ? 
             <PencilIcon className="cursor-pointer" width={25} height={25} color="gray" onClick={handleEdit} /> :
             <div> 
@@ -81,10 +81,10 @@ export default function SelectInput(props: {label: string, id: string, options:s
               <Save func={handleUpdate}/>
             </div>
             }
-            <>
+            <div className="flex flex-row " >
               {currentInfo.options.length < 1 &&  <PlusCircleIcon  width={25} height={25} color="blue" onClick={() => handleCreateLabel()} />}
               <TrashIcon className="cursor-pointer" width={25} height={25} color='red' onClick={handleRemove} />
-            </>
+            </div>
           </div>
         }
     </div>
