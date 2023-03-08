@@ -1,4 +1,11 @@
-export default function Save(props: {func?: () => void}) {
+// types imports 
+import { useStateP } from "@/constants/types/types "
+
+ /*
+/  / ----- Component Save created to save a data block information at the Form 
+ */
+
+export default function Save(props: useStateP) {
   const {func} = props
   return (
     <div

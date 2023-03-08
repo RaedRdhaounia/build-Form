@@ -1,6 +1,9 @@
-import { RectangleGroupIcon, CircleStackIcon, BoltIcon, ArrowPathRoundedSquareIcon, CursorArrowRippleIcon, EyeDropperIcon } from '@heroicons/react/20/solid'
+// -- component imports
 import Dependency from '../Dependency'
+// -- icons imports 
+import { RectangleGroupIcon, CircleStackIcon, BoltIcon, ArrowPathRoundedSquareIcon, CursorArrowRippleIcon, EyeDropperIcon } from '@heroicons/react/20/solid'
 
+// -- static data
 const dependencyInfo = [
   {title : "Components list " , Icon : RectangleGroupIcon        , description :" see the list of components created first 💁 so you can see different styles you can get your first idea about expects"     },
   {title : "Component data"   , Icon : CircleStackIcon           , description :" you don't know what you start with 🙎, start thinking first of data that you like to share then pass styles"               },
@@ -9,6 +12,10 @@ const dependencyInfo = [
   {title : "Styles"           , Icon : EyeDropperIcon            , description :" you can see a basic list of styles but believe that we used a strong and flexible style context. It will grow faster 🏃‍♀️ 🏃‍♂️"},
   {title : "What you wait "   , Icon : BoltIcon                  , description :" We waiting you to make a look and then just don't forget to give us 👨‍💻 your feed back, that's so important for us"         }
 ]
+
+ /*
+/  / ----- Component JoinUs as a list of advantages for using the application
+ */
 
 export default function JoinUs() {
   return (

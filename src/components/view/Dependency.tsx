@@ -1,4 +1,9 @@
+// -- types imports
 import { DependencyP } from "@/types/types"
+
+ /*
+/  / ----- Component Dependency as a the unit elemnt of the advantages list for using the application
+ */
 
 function Dependency({title, Icon, description}: DependencyP) {
   return(

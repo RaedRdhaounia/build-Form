@@ -1,3 +1,7 @@
+ /*
+/  / ----- Component Quote is based created to indicate the needs of this project
+ */
+
 export default function Quote() {
   return (
     <section className="relative isolate overflow-hidden bg-white py-24 px-6 sm:py-32 lg:px-8">

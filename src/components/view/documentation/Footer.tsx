@@ -1,3 +1,7 @@
+ /*
+/  / ----- Component Footer as a typography text created for footer documentation interface the application
+ */
+
 export default function Footer() {
   return (
     <div>

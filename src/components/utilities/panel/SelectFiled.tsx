@@ -3,13 +3,19 @@ import { useState } from 'react'
 import { classNames, fileds } from '../functions'
 // types imports 
 import { FieldType } from '@/constants/types/interfaces '
+import { selectFieldP } from '@/constants/types/types '
 
-function SelectFiled(props:{handleActive:(_active:FieldType) => void }) {
+ /*
+/  / ----- Component SelectFiled created to execute differents fiels at the panel
+ */
+
+export default function SelectFiled(props:selectFieldP) {
   const {handleActive} = props
+
 // ---- local states
   const [active, setActive] = useState("Text Filed")
+
 // ---- action functions
-//-- switch active filed
   function handleActiveTab(_activeFiled: string) {
     let current:FieldType = "text" ;
     setActive(_activeFiled);
@@ -40,4 +46,3 @@ function SelectFiled(props:{handleActive:(_active:FieldType) => void }) {
   )
 }
 
-export default SelectFiled

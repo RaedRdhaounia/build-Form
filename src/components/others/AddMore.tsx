@@ -1,8 +1,14 @@
-import { Dispatch, SetStateAction } from "react";
+// types imports 
+import { openStatusP } from "@/constants/types/types ";
 
-export default function AddMore(props : {open: boolean, setOpen: Dispatch<SetStateAction<boolean>>}) {
+ /*
+/  / ----- Component AddMore Button created to for open panel menu
+ */
+
+export default function AddMore(props : openStatusP) {
   const {open, setOpen} = props
-  return ( !open ? 
+  return ( 
+    !open && 
     <div className="relative top-200  px-4 py-3  sm:px-6">
       <button
         onClick={() => setOpen(true)}
@@ -10,6 +16,7 @@ export default function AddMore(props : {open: boolean, setOpen: Dispatch<SetSta
       >
         add more 
       </button>
-    </div> : <div/>
+    </div>
+    || null
   )
 }

@@ -1,4 +1,11 @@
-export default function BlockDescription(props: {title:string, discription: string}) {
+// types imports
+import { blockDescriptionP } from "@/constants/types/types "
+
+ /*
+/  / ----- Component BlockDescription typography text created to share information for the block block
+ */
+
+export default function BlockDescription(props: blockDescriptionP) {
   const {discription, title} = props
   return (
     <div className="px-4 sm:px-0">

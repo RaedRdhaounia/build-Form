@@ -1,3 +1,7 @@
+ /*
+/  / ----- Component Description as a typography text created to gives some description to the application
+ */
+
 export default function Description() {
   return (
     <>
