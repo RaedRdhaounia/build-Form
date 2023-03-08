@@ -3,6 +3,7 @@ import AddMore from "@/components/others/AddMore ";
 import FormName from "@/components/others/FormName ";
 import Save from "@/components/others/Save ";
 import InputChange from "@/components/utilities/block/InputChange ";
+import { newId } from "@/components/utilities/functions ";
 import { Panel } from "@/components/view ";
 import { blockAdd, blockRemove, blockUpdate } from "@/store/reducers/blockReducer ";
 import { removeCheckBoxByBlock } from "@/store/reducers/checkBoxReducer ";
@@ -10,13 +11,13 @@ import { addBlock, removeBlock } from "@/store/reducers/formReducer ";
 import { useAppSelector } from "@/store/store ";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 function BlockList(props : {index : number, block:string}) {
   const dispatch = useDispatch()
   const {index, block} = props
-  const newId = `${(Math.random() *1000000 )}`
   const blockInfo = useAppSelector(state => state.block[index])
   const newBlockInfo = {description:"description", label:"title", id: blockInfo.id, fields:[]}
   const [updateBlockInfo, setUpdateBlockInfo] = useState(blockInfo)
@@ -30,8 +31,9 @@ function BlockList(props : {index : number, block:string}) {
     dispatch(removeCheckBoxByBlock(blockInfo))
     }
   function handleAddBlock() {
-    dispatch(blockAdd({...newBlockInfo, id:newId}))
-    dispatch(addBlock(newId))
+    const createId = newId()
+    dispatch(blockAdd({...newBlockInfo, id:createId}))
+    dispatch(addBlock(createId))
   }
   function handleEditBotton() {
     dispatch(blockUpdate({...updateBlockInfo}))
@@ -43,6 +45,8 @@ function BlockList(props : {index : number, block:string}) {
   function handleDescription(_value:string) {
     setUpdateBlockInfo({...updateBlockInfo, description: _value})
   }
+
+
   return ( blockInfo &&
     <>
       <div className="flex max-sm:flex-col justify-between  max-sm:justify-center" >
@@ -75,8 +79,12 @@ function BlockList(props : {index : number, block:string}) {
   )
 }
 export default function index() {
+  const router = useRouter();
   const FormData = useAppSelector(state => state.form)
   const [open, setOpen] = useState<boolean>(false)
+  function handleCofirm() {
+    router.push('/form-template')
+  }
   return (
   <>
     <Panel open={open} setOpen={setOpen} />
@@ -87,6 +95,10 @@ export default function index() {
         return <BlockList index={index} key={index} block={block} />
       })}
     </div>
+    <div className="flex justify-center " >
+      <Save func={()=> handleCofirm()} />
+    </div>
+    
   </>
 
   )
