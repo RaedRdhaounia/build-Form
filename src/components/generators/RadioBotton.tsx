@@ -1,11 +1,11 @@
 import { RadioButtonState } from "@/constants/types/interfaces "
 
-function Option(props: {option:string, id:string}){
-  const {option, id} = props
+function Option(props: {value:string, label:string, id: string}){
+  const {value, label, id} = props
   return (
     <div className="flex items-center">
       <input
-        id={`radio-${id}`}
+        id={`radio-${value}`}
         name={`radioName-${id}`}
         type="radio"
         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -14,7 +14,7 @@ function Option(props: {option:string, id:string}){
         htmlFor="push-everything"
         className="ml-3 block text-sm font-medium leading-6 text-gray-900"
       >
-        {option}
+        {label}
       </label>
     </div>
   )
@@ -31,7 +31,7 @@ export default function RadioBotton(props: RadioButtonState) {
       <div className="mt-4 space-y-4">
         {options.map((option, index) => {
             return (
-              <Option key={index} option={option} id={id}/>
+              <Option key={index} {...option} id={id}/>
             )
         })}
       </div>

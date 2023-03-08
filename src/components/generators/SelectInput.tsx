@@ -14,14 +14,14 @@ function findIndexById(_arr:SelectInputState[] , _id: string) {
   return _arr.findIndex(obj => obj.id === _id);
 }
 
-export default function SelectInput(props: {label: string, id: string, options:string[]}) {
+export default function SelectInput(props: SelectInputState) {
   const dispatch = useDispatch()
-  const {id, label} = props
+  const {id, label, options} = props
   const SelectInputInfo = useAppSelector(state => state.selectInput)
   const currentInfo = SelectInputInfo[findIndexById(SelectInputInfo, id)]
   const [Options, setOptions] = useState(currentInfo?.options)
   const [Label, setLabel] = useState(currentInfo?.label)
-  const [edit, setEdit] = useState(false)
+  const [edit, setEdit] = useState(true)
 
   function handleEdit(){
     setEdit(!edit)
@@ -49,6 +49,13 @@ export default function SelectInput(props: {label: string, id: string, options:s
         className="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       >
         {currentInfo && currentInfo.options.map((option,index) => {
+          return (
+            <option key={index} value={option?.value}>
+              {option?.label}
+            </option>
+          )
+        })}
+         {options && options.map((option,index) => {
           return (
             <option key={index} value={option?.value}>
               {option?.label}
