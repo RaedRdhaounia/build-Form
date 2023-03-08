@@ -1,20 +1,35 @@
-import { Dispatch, Fragment, SetStateAction, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { Fragment, useState } from 'react'
+// -- store imports
 import { useAppSelector } from '@/store/store '
-import BlockButton from '../utilities/panel/BlockButton'
-import SelectedItem from '../utilities/panel/SelectedItem'
+// -- components imports 
 import Title from '../utilities/panel/Title'
-import SelectFiled from '../utilities/panel/SelectFiled'
-import { FieldType } from '@/constants/types/interfaces '
+import {BlockButton, SelectedItem, SelectFiled} from '../utilities/panel/'
+// -- icons imports
+import { Dialog, Transition } from '@headlessui/react'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
-export default function Panel(props : {open: boolean, setOpen: Dispatch<SetStateAction<boolean>>}) {
+// -- types imports 
+import { FieldType } from '@/constants/types/interfaces '
+import { openStatusP } from '@/constants/types/types '
+
+ /*
+/  / ----- Component Dependency as a the unit elemnt of the advantages list for using the application
+ */
+
+export default function Panel(props : openStatusP ) {
   const {open, setOpen} = props
+
+// ----- store selector reducer
   const formStore = useAppSelector(store => store.form)
+
+// ----- local states
   const [active, setActive] = useState<FieldType>("text")
+
+// ----- util action functions
   function handleActive(_active:FieldType){
     setActive(_active)
   }
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -72,6 +87,6 @@ export default function Panel(props : {open: boolean, setOpen: Dispatch<SetState
           </div>
         </div>
       </Dialog>
-      </Transition.Root>
+    </Transition.Root>
   )
 }
