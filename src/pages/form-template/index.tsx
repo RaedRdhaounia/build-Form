@@ -1,11 +1,11 @@
-import React from 'react'
+ /*
+/  / ----- Component index is main component of the page at the path /form-template to show the final product that the user edited
+ */
 
-function index() {
+export default function index() {
   return (
     <div>
         form template
     </div>
   )
 }
-
-export default index

@@ -27,6 +27,6 @@ export type selectItemdP      = { type:FieldType, id:string, setOpen:(open:boole
 export type selectFieldP      = { handleActive:(_active:FieldType) => void }
 export type FormP             = { formName: string, blocks : BlockP[] }
 export type BlockP            = { label: string, description:string, id:string, fields: {type:FieldType, id:string}[] }
-
+export type BlockListP        = { index : number, block:string}
 // ---- enum type
 export type FindByIndexT =  InputFieldState[] | SelectInputState[] | CheckBoxState[]

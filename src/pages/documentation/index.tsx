@@ -1,5 +1,10 @@
+// -- components imports 
 import IDocument from '@/assets/images/IDocument '
 import { Header, Footer, ImageDescription, JoinUs } from '@/components/view/documentation '
+
+ /*
+/  / ----- Component index is main component of the documentation page at the path /documentation to show the list of details of the application
+ */
 
 export default function index() {
   return (

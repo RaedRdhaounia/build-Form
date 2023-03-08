@@ -1,27 +1,48 @@
-import Block from "@/components/generators/Block ";
-import AddMore from "@/components/others/AddMore ";
-import FormName from "@/components/others/FormName ";
-import Save from "@/components/others/Save ";
-import InputChange from "@/components/utilities/block/InputChange ";
-import { newId } from "@/components/utilities/functions ";
-import { Panel } from "@/components/view ";
-import { blockAdd, blockRemove, blockUpdate } from "@/store/reducers/blockReducer ";
-import { removeCheckBoxByBlock } from "@/store/reducers/checkBoxReducer ";
-import { addBlock, removeBlock } from "@/store/reducers/formReducer ";
-import { useAppSelector } from "@/store/store ";
-import { PlusCircleIcon } from "@heroicons/react/20/solid";
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
-function BlockList(props : {index : number, block:string}) {
+// -- store imports
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/store/store ";
+
+// -- reducers imports
+import { blockAdd, blockRemove, blockUpdate } from "@/store/reducers/blockReducer ";
+import { removeCheckBoxByBlock              } from "@/store/reducers/checkBoxReducer ";
+import { addBlock, removeBlock              } from "@/store/reducers/formReducer ";
+
+// -- components imports
+import InputChange from "@/components/utilities/block/InputChange ";
+import {AddMore, FormName, Save} from "@/components/others/ ";
+import {Block} from "@/components/generators ";
+import { Panel } from "@/components/view ";
+
+// -- icons imports
+import { PlusCircleIcon        } from "@heroicons/react/20/solid";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+
+// -- until functions imports
+import { newId } from "@/components/utilities/functions ";
+
+// -- types imports
+import { BlockListP } from "@/constants/types/types ";
+
+ /*
+/  / ----- Component BlockList is the unit block element of the Form at the application
+ */
+
+function BlockList(props : BlockListP) {
   const dispatch = useDispatch()
   const {index, block} = props
+
+// ----- store selector reducer
   const blockInfo = useAppSelector(state => state.block[index])
   const newBlockInfo = {description:"description", label:"title", id: blockInfo.id, fields:[]}
+
+// ----- local states
   const [updateBlockInfo, setUpdateBlockInfo] = useState(blockInfo)
-  const [edit, setEdit] = useState(false)
+  const [edit           , setEdit           ] = useState(false)
+
+// ----- util action functions
   function handleEdit(){
     setEdit(!edit)
   }
@@ -78,10 +99,21 @@ function BlockList(props : {index : number, block:string}) {
     </>
   )
 }
+
+ /*
+/  / ----- Component index is interface page for the user at the path /create-template of the web application
+ */
+
 export default function index() {
   const router = useRouter();
+
+// ----- store selector reducer
   const FormData = useAppSelector(state => state.form)
+
+// ----- local states
   const [open, setOpen] = useState<boolean>(false)
+
+// ----- util navigation function
   function handleCofirm() {
     router.push('/form-template')
   }
