@@ -1,8 +1,10 @@
+// import back ground image
 import IInroduction from "@/assets/images/IInroduction ";
 
  /*
 /  / ----- Component Introduction is based created to introduce the project
  */
+
 export default function Introduction() {
   return (
     <div className="isolate bg-white">

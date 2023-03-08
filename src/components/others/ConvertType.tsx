@@ -1,9 +1,15 @@
-import { radiobottonInfo, checkBoxInfo, selectInputInfo, textInputInfo } from "@/constants/defaultValues ";
-import { FieldType } from "@/constants/types/interfaces ";
+// component imports
 import { InputText, CheckBox, RadioBotton, SelectInput } from "../generators";
+// types imports
+import { ConvertTypeP } from "@/constants/types/types ";
+// default values imports
+import { radiobottonInfo, checkBoxInfo, selectInputInfo, textInputInfo } from "@/constants/defaultValues ";
 
-export default function ConvertType(props: {type: FieldType, id: string}) {
+ /*
+/  / ----- Component ConvertType switcher  created to convert Block stored data ({type, id}) to the write component path
+ */
 
+export default function ConvertType(props: ConvertTypeP) {
   const {id, type} = props
   switch (type) {
     case "text"    :
