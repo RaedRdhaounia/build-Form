@@ -16,6 +16,7 @@ import { newId } from "../functions";
 import { Size, useWindowSize } from "../SizeWindow";
 // types imports 
 import { selectItemdP } from "@/constants/types/types ";
+import { addRadioButton } from "@/store/reducers/radioBottonReducer ";
 
  /*
 /  / ----- Component SelectedItem created to dispatch add new filed from the panel as 2 method drag with widh screen more than 1200px and click methode with other devices
@@ -43,9 +44,10 @@ export default function SelectedItem(props:selectItemdP) {
         dispatch(addCheckBox({description:'description', id:createId, label: "label", value:false}))
         break;
       case "radio":
+        dispatch(addRadioButton({description:'description',label: "radio botton label", id:createId, options:[ {label:"option1", value:newId()}, {label:"option2", value:newId()}, {label:"option3", value:newId()} ] }))
         break;
       case "select":
-        dispatch(addSelectInput({ id:createId, label: "label", options:[{label:"test", value:"val"}]}))
+        dispatch(addSelectInput({ id:createId, label: "select input label", options:[ {label:"option1", value:newId()}, {label:"option2", value:newId()}, {label:"option3", value:newId()} ]}))
         break;
       default:
         break;
