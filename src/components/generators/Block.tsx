@@ -16,6 +16,7 @@ import { BlockDescription, Divider } from '../utilities'
 import { classNames, newId } from '../utilities/functions'
 // types imports 
 import { BlockP } from '@/constants/types/types '
+import { addRadioButton } from '@/store/reducers/radioBottonReducer '
 
 export default function Block(props: BlockP) {
   const dispatch = useDispatch()
@@ -33,15 +34,16 @@ export default function Block(props: BlockP) {
     if (dragfiled) {
       switch (dragfiled) {
         case "text":
-          dispatch(addInputText({id:createId, label: "label", value:""}))
+          dispatch(addInputText({id:createId, label: "text input ", value:""}))
           break;
         case "checkbox":
           dispatch(addCheckBox({description:'description', id:createId, label: "label", value:false}))
           break;
         case "radio":
+          dispatch(addRadioButton({description:'description', id:createId, label: "label", options:[{label:"option1", value:newId()}, {label:"option2", value:newId()}, {label:"option3", value:newId()}]}))
           break;
         case "select":
-          dispatch(addSelectInput({ id:createId, label: "label", options:[{label:"test", value:"val"}]}))
+          dispatch(addSelectInput({ id:createId, label: "label", options:[ {label:"option1", value:newId()}, {label:"option2", value:newId()}, {label:"option3", value:newId()} ]}))
           break;
         default:
           break;
