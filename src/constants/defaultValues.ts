@@ -7,3 +7,16 @@ export const checkBoxInfo    : CheckBoxState    = { id:"id", label: "checkbox la
 export const textInputInfo   : InputFieldState  = { id:"id", label: "input text label"   , value : " text input name"                 ,                                            }
 export const blockInfo       : BlockP           = { id:"id", label: "block label"        , description:"description for block as an example", fields:[ {type:"radio", id:"id"}, {type:"checkbox", id:"id"}, {type:"text" , id:"id"}, {type:"select"  , id:"id"} ]}
 export const FormInfo        : FormP            = { formName:"form name", blocks: [blockInfo] }
+
+// input types 
+export function inputType(type: string){
+    if (type.toLowerCase().includes("email")) {
+      return "email";
+    } else if (type.toLowerCase().includes("password")) {
+      return 'password';
+    } else if (type.toLowerCase().includes("url")) {
+        return "url";
+    } else {
+      return "text"
+    }
+}
