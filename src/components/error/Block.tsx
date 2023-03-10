@@ -6,7 +6,7 @@ import { BlockP } from '@/constants/types/types '
 
 export default function Block(props: {block : BlockP}) {
   const {block} = props
-  const {description, fields, label,} = block
+  const {description, fields, label} = block
 // ------ action functions ------
   return (
     <div className='text-gray-300   mt-10 sm:mt-0' >

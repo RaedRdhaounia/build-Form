@@ -13,8 +13,6 @@ export default function InputText(props: { id:string}) {
   const currentInfo = TextInputInfo[findIndexById(TextInputInfo, id)]
 // ------ action functions ------
 
-// change values
-
   return (
     <>
       <div className="col-span-6">

@@ -1,19 +1,17 @@
 
 // -- store imports
 import { useAppSelector } from "@/store/store ";
-import * as Yup from "yup";
-import {FormName,} from "@/components/others/ ";
+import {FormName} from "@/components/others/ ";
 
 // -- types imports
 import { Block } from "@/components/error ";
-import { FormEvent, useEffect, useState } from "react";
 import { BoxReducer } from "@/constants/types/interfaces ";
 
  /*
 /  / ----- Component BlockList is the unit block element of the Form at the application
  */
 
-function BlockList(props : {block :BoxReducer, formik: any}) {
+function BlockList(props : {block :BoxReducer}) {
   const {block} = props
 
 // ----- store selector reducer
