@@ -1,18 +1,17 @@
 // ---- store imports
 // -- action store functions import 
 import { useAppSelector } from "@/store/store "
+import {  useState } from "react";
 // ---- util functions imports
 import { findIndexById } from "../utilities/functions";
-// types imports 
-import { inputType } from "@/constants/defaultValues ";
 
-export default function InputText(props: { id:string}) {
+export default function InputText(props: {id:string}) {
   const {id} = props
   // ----- store selct - convert id -
   const TextInputInfo = useAppSelector(state => state.textField)
   const currentInfo = TextInputInfo[findIndexById(TextInputInfo, id)]
 // ------ action functions ------
-
+  const [text, setText] = useState('')
   return (
     <>
       <div className="col-span-6">
@@ -20,8 +19,9 @@ export default function InputText(props: { id:string}) {
           {currentInfo.label}
         </label>
         <input
-          value={"fffffffff"}
-          type={inputType(currentInfo.label)}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          type={"text"}
           name={id}
           placeholder={"please tap your text here "}
           id={id}
