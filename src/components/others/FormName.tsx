@@ -14,8 +14,8 @@ import { PencilIcon } from '@heroicons/react/24/outline'
 /  / ----- Component FormName created to execute, controle and update the form name of the form builder
  */
 
-export default function FormName(props:{update?:boolean}) {
-  const {update} = props
+export default function FormName(props:{update?:boolean, name?:string}) {
+  const {update, name} = props
   const dispatch = useDispatch()
 // ----- store selct - convert dispatch form Name -
   const FormNameInfo = useAppSelector(state => state.form.formName)
@@ -34,7 +34,7 @@ export default function FormName(props:{update?:boolean}) {
   }
   return ( edit ?
     <div className="text-center m-16 flex justify-center">
-      {FormNameInfo}
+      {name || FormNameInfo}
       {!update && <PencilIcon width={24} height={24} color="gray" onClick={handleEdit} /> } 
     </div>
     :

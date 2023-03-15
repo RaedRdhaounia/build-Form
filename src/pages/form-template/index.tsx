@@ -6,6 +6,7 @@ import {FormName} from "@/components/others/ ";
 // -- types imports
 import { Block } from "@/components/error ";
 import { BoxReducer } from "@/constants/types/interfaces ";
+import { FormEvent } from "react";
 
  /*
 /  / ----- Component BlockList is the unit block element of the Form at the application
@@ -28,9 +29,13 @@ export default function index() {
   //const FormData = useAppSelector(state => state.form)
   const blocks = useAppSelector(state => state.block)
 // ----- errors 
-
+  function handleSumbit(event: FormEvent<HTMLFormElement>) {
+    if ( event.isTrusted === true) {
+      alert("suucess")
+    }
+  }
   return (
-  <div>
+  <form onSubmit={(event) =>  handleSumbit(event)}>
     <FormName update={true} />
           <div>
             {blocks.map((block, index) => {
@@ -40,7 +45,7 @@ export default function index() {
           <div className="flex justify-center " >
             <button type="submit"  > check </button>
           </div>
-  </div>
+  </form>
 
   )
 }
